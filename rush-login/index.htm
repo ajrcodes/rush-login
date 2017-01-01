@@ -68,6 +68,27 @@
               </div>
             </div>
             <div class="row padding-top-10">
+                <div class="col-md-6">
+                  <label class="control-label">Take your picture:</label>
+                </div>
+                <div class="col-md-6">
+                  <label class="control-label">Saved Image:</label>
+                </div>
+            </div>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                  <div id="my_camera" style="width:320px; height:240px;"></div>
+                </div>
+                <div class="col-md-6">
+                  <div id="my_result"></div>
+                </div>
+            </div>
+            <div class="row padding-top-10">
+              <div class="col-md-6 padding-top-10">
+                <input type=button value="Take Snapshot" onClick="take_snapshot()">
+              </div>
+            </div>
+            <div class="row padding-top-10">
               <div class="col-md-6 padding-top-10">
                 <button id="saveData" class="btn btn-success">Check in</button>
               </div>
@@ -78,8 +99,21 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="submitButton.js"></script>
+
+    <!-- Scripts for the webcam, taken from https://github.com/jhuckaby/webcamjs -->
+    <script src="webcam.js"></script>
+    <script language="JavaScript">
+        Webcam.attach( '#my_camera' );
+
+        function take_snapshot() {
+            Webcam.snap( function(data_uri) {
+                document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+            } );
+        }
+    </script>
   </body>
 </html>
