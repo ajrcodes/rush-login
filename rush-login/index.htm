@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Alpha Sig - Rush login</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/basic-template.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container padding-top-10">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Registration
+        </div>
+        <div class="panel-body">
+          <form id="main-form" method="POST">
+            <label for="firstName" class="control-label">Name:</label>
+            <div class="row padding-top-10">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="firstName" placeholder="First" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="lastName" placeholder="Last" />
+              </div>
+            </div>
+            <label for="" class="control-label padding-top-10">Year:</label>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="radio">
+                  <label><input type="radio" name="radio" value="1st year">1st year</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="radio" value="2nd year">2nd year</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="radio" value="3rd year">3rd year</label>
+                </div>
+              </div>
+            </div>
+            <label for="address" class="control-label padding-top-10">Dorm or apartment:</label>
+            <div class="row padding-top-10">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="address" placeholder="Address" />
+              </div>
+            </div>
+            <label for="phoneNum" class="control-label padding-top-10">Phone number:</label>
+            <div class="row padding-top-10">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="phoneNum" placeholder="###-###-####" />
+              </div>
+            </div>
+            <label for="email" class="control-label padding-top-10">Email address:</label>
+            <div class="row padding-top-10">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="email" placeholder="example@virginia.edu" />
+              </div>
+            </div>
+            <div class="row padding-top-10">
+              <div class="col-md-6 padding-top-10">
+                <button id="saveData" class="btn btn-success">Check in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="submitButton.js"></script>
+  </body>
+</html>
