@@ -61,10 +61,10 @@
                 <input type="text" class="form-control" id="phoneNum" placeholder="###-###-####" />
               </div>
             </div>
-            <label for="email" class="control-label padding-top-10">Email address:</label>
+            <label for="email" class="control-label padding-top-10">UVA ID:</label>
             <div class="row padding-top-10">
               <div class="col-md-6">
-                <input type="text" class="form-control" id="email" placeholder="example@virginia.edu" />
+                <input type="text" class="form-control" id="email" placeholder="abc5de" />
               </div>
             </div>
             <div class="row padding-top-10">
@@ -85,7 +85,7 @@
             </div>
             <div class="row padding-top-10">
               <div class="col-md-6 padding-top-10">
-                <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                <input type=button value="Take Snapshot" onClick="checkEmail()">
               </div>
             </div>
             <div class="row padding-top-10">
@@ -107,18 +107,28 @@
     <!-- Scripts for the webcam, taken from https://github.com/jhuckaby/webcamjs -->
     <script src="webcam.js"></script>
     <script language="JavaScript">
-        Webcam.attach( '#my_camera' );
+      Webcam.attach( '#my_camera' );
 
-        function take_snapshot() {
-            Webcam.snap( function(data_uri) {
-                document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-                Webcam.upload( data_uri, 'uploadImage.php', function(code, text) {
-                // Upload complete!
-                // 'code' will be the HTTP response code from the server, e.g. 200
-                // 'text' will be the raw response content
-                } );
-            } );
+      function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+          document.getElementById('my_result').innerHTML = '<img id="screenshot" src="'+data_uri+'"/>';
+          // upload image
+          var email = document.getElementById("email").value;
+          var url = 'uploadImage.php?email=' + email;
+          Webcam.upload(data_uri, url, function(code, text) {});
+        } );
+      }
+    </script>
+    <!-- Script called since the images are stored using the user's email address -->
+    <script language="JavaScript">
+      function checkEmail() {
+        if(document.getElementById("email").value == "") {
+          alert("Please enter your UVA ID before taking a picture");
+          return false;
+        } else {
+          take_snapshot();
         }
+      } 
     </script>
   </body>
 </html>
