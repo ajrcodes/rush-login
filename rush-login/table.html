@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Rushee information</title>
 
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -13,6 +13,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-table.css">
+    <link rel="stylesheet" href="css/basic-template.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-table.js"></script>
 
@@ -30,14 +31,24 @@
   </head>
   <body>
     <div class="container padding-top-10">
-    	<div class="row">
+    	<div class="row padding-top-10">
     		<table id="table"></table>
+            <div id="test"></div>
     	</div>
     </div>
     <!-- Table function -->
     <script type="text/JavaScript">
         $('#table').bootstrapTable({
+            method: 'get',
             url: 'table_fill.json',
+            height: 600,
+            cache: false,
+            striped: true,
+            pagination: true,
+            pageSize: 25,
+            pageList: [10,25,50,100,200],
+            minimumCountColumns: 2,
+            clickToSelect: true,
             columns: [{
                 field: 'firstName',
                 title: 'First name'
@@ -57,6 +68,16 @@
                 field: 'uvaid',
                 title: 'UVA id'
             }, ]
+        });
+
+        $('#table').on('click-row.bs.table', function (row, $element, field) {
+            // on click, route to individual display page with row's information
+            window.location.href = "rushee-information.php?firstName="+$element['firstName']
+            +"&lastName="+$element['lastName']
+            +"&year="+$element['year']
+            +"&address="+$element['address']
+            +"&phoneNum="+$element['phoneNum']
+            +"&uvaid="+$element['uvaid'];
         });
     </script>﻿
   </body>
