@@ -11,7 +11,7 @@
 	$email = $_POST['email'];
 	
 	// insert into MySQL db
-	$insert_q = "INSERT INTO rushee VALUES('', '$firstName', '$lastName', '$year', '$address', '$phoneNum', '$email')";
+	$insert_q = "INSERT INTO rushee VALUES('$firstName', '$lastName', '$year', '$address', '$phoneNum', '$email')";
 	mysqli_query($conn, $insert_q);
 
 ?>
