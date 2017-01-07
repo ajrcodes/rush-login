@@ -29,7 +29,7 @@
             <label for="year" class="control-label padding-top-10">Year:</label>
             <div class="row padding-top-10">
               <div class="col-md-6">
-                <select class="form-control">
+                <select id="year" class="form-control">
                   <option value="" selected>Select a year</option>
                   <option value="1st year">1st year</option>
                   <option value="2nd year">2nd year</option>
@@ -40,7 +40,7 @@
             <label for="event" class="control-label padding-top-10">Event:</label>
             <div class="row padding-top-10">
               <div class="col-md-6">
-                <select class="form-control">
+                <select id="event" class="form-control">
                   <option value="" selected>Select an event</option>
                   <option value="firstRoundEvent1">First round - event 1</option>
                   <option value="firstRoundEvent2">First round - event 2</option>
@@ -62,19 +62,33 @@
             </div>
             <div class="row padding-top-10">
               <div class="col-md-6 padding-top-10">
-                <button id="search" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                <button type="button" onclick="search()" class="btn btn-primary">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
+    <script>
+    function search() {
+      // get values
+      var year = document.getElementById("year").value;
+      var event = document.getElementById("event").value;
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      // form uri & reroute
+      window.location.href= "table-search-results.php?year="+year
+      +"&event="+event
+      +"&firstName="+firstName
+      +"&lastName="+lastName;
+    }
+    </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="searchButton.js"></script>
   </body>
 </html>
