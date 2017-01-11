@@ -7,7 +7,7 @@
 	$roundName = $_POST['round'];
 	
 	// insert into MySQL db
-	$insert_q = "INSERT INTO $roundName VALUES('$uvaid')";
+	$insert_q = "DELETE FROM $roundName WHERE uvaid = '$uvaid'";
 	mysqli_query($conn, $insert_q);
 
 ?>

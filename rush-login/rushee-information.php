@@ -70,6 +70,43 @@
                 </div>
             </div>
             <hr>
+            <label>Round invites</label>
+            <div class="padding-top-10"></div>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                    First Round:
+                    <label id="rusheeFirstRound"><span class="glyphicon glyphicon-remove"></span></label>
+                </div>
+                <div class "col-md-6">
+                    <button class="btn btn-success btn-xs" onClick="add('rusheeFirstRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeFirstRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <hr>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                    Second Round:
+                    <label id="rusheeSecondRound"><span class="glyphicon glyphicon-remove"></span></label>
+                </div>
+                <div class "col-md-6">
+                    <button class="btn btn-success btn-xs" onClick="add('rusheeSecondRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeSecondRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <hr>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                    Third Round:
+                    <label id="rusheeThirdRound"><span class="glyphicon glyphicon-remove"></span></label>
+                </div>
+                <div class "col-md-6">
+                    <button class="btn btn-success btn-xs" onClick="add('rusheeThirdRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeThirdRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <hr>
+            <label>Event attendance</label>
+            <div class="padding-top-10"></div>
             <div class="row padding-top-10">
                 <div class="col-md-4">
                     <label>First Round</label>
@@ -119,40 +156,6 @@
                     <label id="event6">No</label>
                 </div>
             </div>
-            <hr>
-            <div class="row padding-top-10">
-                <div class="col-md-6">
-                    First Round:
-                    <label id="firstRound"><span class="glyphicon glyphicon-remove"></span></label>
-                </div>
-                <div class "col-md-6">
-                    <button id="addRushee" class="btn btn-success btn-xs">Add <span class="glyphicon glyphicon-plus"></span></button>
-                    <button id="removeRushee" class="btn btn-danger btn-xs" onclick="remove('rusheeFirstRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
-                </div>
-            </div>
-            <hr>
-            <div class="row padding-top-10">
-                <div class="col-md-6">
-                    Second Round:
-                    <label id="secondRound"><span class="glyphicon glyphicon-remove"></span></label>
-                </div>
-                <div class "col-md-6">
-                    <button id="addRushee" type="button" class="btn btn-success btn-xs" onclick="add('rusheeSecondRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
-                    <button id="removeRushee" type="button" class="btn btn-danger btn-xs" onclick="remove('rusheeSecondRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
-                </div>
-            </div>
-            <hr>
-            <div class="row padding-top-10">
-                <div class="col-md-6">
-                    Third Round:
-                    <label id="thirdRound"><span class="glyphicon glyphicon-remove"></span></label>
-                </div>
-                <div class "col-md-6">
-                    <button id="addRushee" type="button" class="btn btn-success btn-xs" onclick="add('rusheeThirdRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
-                    <button id="removeRushee" type="button" class="btn btn-danger btn-xs" onclick="remove('rusheeThirdRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
-                </div>
-            </div>
-            <label id="tester">hihi</label>
         </div>
       </div>
     </div>
@@ -179,22 +182,52 @@
         document.getElementById('event7').innerHTML = '<?php echo $event7; ?>';
         document.getElementById('event8').innerHTML = '<?php echo $event8; ?>';
         // rounds
-        document.getElementById('firstRound').innerHTML = '<?php echo $round1; ?>';
-        document.getElementById('secondRound').innerHTML = '<?php echo $round2; ?>';
-        document.getElementById('thirdRound').innerHTML = '<?php echo $round3; ?>';
+        document.getElementById('rusheeFirstRound').innerHTML = '<?php echo $round1; ?>';
+        document.getElementById('rusheeSecondRound').innerHTML = '<?php echo $round2; ?>';
+        document.getElementById('rusheeThirdRound').innerHTML = '<?php echo $round3; ?>';
     </script>
 
     <!-- add / remove button scripts -->
-    <script type = "text/javascript" language = "javascript">
-         $(document).ready(function() {
-    
-            $("#addRushee").click(function(event){
-
-               $.post("addRushee.php", {uvaid: "test please"}, function(){}); 
+    <script>
+        function add(roundName) {
+            var user_id = document.getElementById('uvaid').innerHTML;
+            jQuery.ajax({
+                type: "POST",
+                url: "addRushee.php",
+                data: { uvaid: user_id, round: roundName}
+                }).done(function(msg) {
 
             });
 
-         });
+            // reflect changes
+            document.getElementById(roundName).innerHTML = '<?php echo $default_yes; ?>';
+        }
+
+        function remove(roundName) {
+            var user_id = document.getElementById('uvaid').innerHTML;
+            jQuery.ajax({
+                type: "POST",
+                url: "removeRushee.php",
+                data: { uvaid: user_id, round: roundName}
+                }).done(function(msg) {
+
+            });
+
+            // reflect changes
+            document.getElementById(roundName).innerHTML = '<?php echo $default_no; ?>';
+        }
+    </script>
+
+    <!-- Don't want the buttons to remain focused after click 
+        Reference:
+        http://stackoverflow.com/questions/23443579/how-to-stop-buttons-from-staying-depressed-with-bootstrap-3 -->
+    <script>
+        $(document).ready(function () {
+            $(".btn").click(function() {
+                // Removes focus of the button.
+                $(this).blur();
+            });
+        });
     </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
