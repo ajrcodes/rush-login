@@ -71,41 +71,88 @@
             </div>
             <hr>
             <div class="row padding-top-10">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>First Round</label>
+                </div>
+                <div class="col-md-4">
+                    <label>Second Round</label>
+                </div>
+                <div class="col-md-4">
+                    <label>Third Round</label>
+                </div>
+            </div>
+            <div class="row padding-top-10">
+                <div class="col-md-4">
                     Event 1:
                     <label id="event1">No</label>
                 </div>
+                <div class="col-md-4">
+                    Event 1:
+                    <label id="event4">No</label>
+                </div>
+                <div class="col-md-4">
+                    Event 1:
+                    <label id="event7">No</label>
+                </div>
             </div>
             <div class="row padding-top-10">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     Event 2:
                     <label id="event2">No</label>
                 </div>
+                <div class="col-md-4">
+                    Event 2:
+                    <label id="event5">No</label>
+                </div>
+                <div class="col-md-4">
+                    Event 2:
+                    <label id="event8">No</label>
+                </div>
             </div>
             <div class="row padding-top-10">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     Event 3:
                     <label id="event3">No</label>
                 </div>
-            </div>
-            <div class="row padding-top-10">
-                <div class="col-md-6">
-                    Event 4:
-                    <label id="event4">No</label>
-                </div>
-            </div>
-            <div class="row padding-top-10">
-                <div class="col-md-6">
-                    Event 5:
-                    <label id="event5">No</label>
-                </div>
-            </div>
-            <div class="row padding-top-10">
-                <div class="col-md-6">
-                    Event 6:
+                <div class="col-md-4">
+                    Event 3:
                     <label id="event6">No</label>
                 </div>
             </div>
+            <hr>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                    First Round:
+                    <label id="firstRound"><span class="glyphicon glyphicon-remove"></span></label>
+                </div>
+                <div class "col-md-6">
+                    <button id="addRushee" class="btn btn-success btn-xs">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button id="removeRushee" class="btn btn-danger btn-xs" onclick="remove('rusheeFirstRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <hr>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                    Second Round:
+                    <label id="secondRound"><span class="glyphicon glyphicon-remove"></span></label>
+                </div>
+                <div class "col-md-6">
+                    <button id="addRushee" type="button" class="btn btn-success btn-xs" onclick="add('rusheeSecondRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button id="removeRushee" type="button" class="btn btn-danger btn-xs" onclick="remove('rusheeSecondRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <hr>
+            <div class="row padding-top-10">
+                <div class="col-md-6">
+                    Third Round:
+                    <label id="thirdRound"><span class="glyphicon glyphicon-remove"></span></label>
+                </div>
+                <div class "col-md-6">
+                    <button id="addRushee" type="button" class="btn btn-success btn-xs" onclick="add('rusheeThirdRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button id="removeRushee" type="button" class="btn btn-danger btn-xs" onclick="remove('rusheeThirdRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <label id="tester">hihi</label>
         </div>
       </div>
     </div>
@@ -113,12 +160,15 @@
     <!-- Page setup -->
     <?php include 'getEvents.php'; ?>
     <script>
+        // information
         document.getElementById('firstName').innerHTML = '<?php echo $_GET['firstName']; ?>' ;
         document.getElementById('lastName').innerHTML = '<?php echo $_GET['lastName']; ?>';
         document.getElementById('year').innerHTML = '<?php echo $_GET['year']; ?>';
         document.getElementById('address').innerHTML = '<?php echo $_GET['address']; ?>';
         document.getElementById('phoneNum').innerHTML = '<?php echo $_GET['phoneNum']; ?>';
         document.getElementById('uvaid').innerHTML = '<?php echo $_GET['uvaid']; ?>';
+        // image
+        document.getElementById('rusheePic').src = "images/" + '<?php echo $_GET['uvaid']; ?>' + ".jpg";
         // events
         document.getElementById('event1').innerHTML = '<?php echo $event1; ?>';
         document.getElementById('event2').innerHTML = '<?php echo $event2; ?>';
@@ -126,8 +176,25 @@
         document.getElementById('event4').innerHTML = '<?php echo $event4; ?>';
         document.getElementById('event5').innerHTML = '<?php echo $event5; ?>';
         document.getElementById('event6').innerHTML = '<?php echo $event6; ?>';
-        // image
-        document.getElementById('rusheePic').src = "images/" + '<?php echo $_GET['uvaid']; ?>' + ".jpg";
+        document.getElementById('event7').innerHTML = '<?php echo $event7; ?>';
+        document.getElementById('event8').innerHTML = '<?php echo $event8; ?>';
+        // rounds
+        document.getElementById('firstRound').innerHTML = '<?php echo $round1; ?>';
+        document.getElementById('secondRound').innerHTML = '<?php echo $round2; ?>';
+        document.getElementById('thirdRound').innerHTML = '<?php echo $round3; ?>';
+    </script>
+
+    <!-- add / remove button scripts -->
+    <script type = "text/javascript" language = "javascript">
+         $(document).ready(function() {
+    
+            $("#addRushee").click(function(event){
+
+               $.post("addRushee.php", {uvaid: "test please"}, function(){}); 
+
+            });
+
+         });
     </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

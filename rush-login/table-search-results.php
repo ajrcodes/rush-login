@@ -41,8 +41,6 @@
         $sql = "SELECT * FROM rushee $where_q";
     }
 
-    print($sql);
-
     $result = mysqli_query($conn, $sql);
     $i = 0;
 
