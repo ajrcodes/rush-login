@@ -78,8 +78,8 @@
                     <label id="rusheeFirstRound"><span class="glyphicon glyphicon-remove"></span></label>
                 </div>
                 <div class "col-md-6">
-                    <button class="btn btn-success btn-xs" onClick="add('rusheeFirstRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeFirstRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                    <button class="btn btn-success btn-xs" onClick="add('rusheeFirstRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeFirstRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
                 </div>
             </div>
             <hr>
@@ -89,8 +89,8 @@
                     <label id="rusheeSecondRound"><span class="glyphicon glyphicon-remove"></span></label>
                 </div>
                 <div class "col-md-6">
-                    <button class="btn btn-success btn-xs" onClick="add('rusheeSecondRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeSecondRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                    <button class="btn btn-success btn-xs" onClick="add('rusheeSecondRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeSecondRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
                 </div>
             </div>
             <hr>
@@ -100,8 +100,8 @@
                     <label id="rusheeThirdRound"><span class="glyphicon glyphicon-remove"></span></label>
                 </div>
                 <div class "col-md-6">
-                    <button class="btn btn-success btn-xs" onClick="add('rusheeThirdRound')">Add <span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeThirdRound')">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                    <button class="btn btn-success btn-xs" onClick="add('rusheeThirdRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-danger btn-xs" onClick="remove('rusheeThirdRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
                 </div>
             </div>
             <hr>
@@ -216,18 +216,6 @@
             // reflect changes
             document.getElementById(roundName).innerHTML = '<?php echo $default_no; ?>';
         }
-    </script>
-
-    <!-- Don't want the buttons to remain focused after click 
-        Reference:
-        http://stackoverflow.com/questions/23443579/how-to-stop-buttons-from-staying-depressed-with-bootstrap-3 -->
-    <script>
-        $(document).ready(function () {
-            $(".btn").click(function() {
-                // Removes focus of the button.
-                $(this).blur();
-            });
-        });
     </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

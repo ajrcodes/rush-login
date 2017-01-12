@@ -2,8 +2,11 @@
     // connection
     include 'db.php';
 
+    // get round information
+    $round = $_GET['round'];
+
     // form query
-    $sql = "SELECT * FROM rushee";
+    $sql = "SELECT * FROM rushee INNER JOIN $round on rushee.uvaid = $round.uvaid";
     $result = mysqli_query($conn, $sql);
     $i = 0;
 
@@ -25,5 +28,5 @@
     $json_string = json_encode($data['posts']);
     $file = 'table-fill.json';
     file_put_contents($file, $json_string);
-    @header('Location:table.php?round=openHouse');
+    @header('Location:table.php?round='.$round);
 ?>

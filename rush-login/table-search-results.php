@@ -62,5 +62,5 @@
     $json_string = json_encode($data['posts']);
     $file = 'table-fill.json';
     file_put_contents($file, $json_string);
-    @header('Location:table.html');
+    @header('Location:table.php?round=search');
 ?>
