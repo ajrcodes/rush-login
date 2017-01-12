@@ -5,6 +5,7 @@
     // get user inputs
     $year = $_GET['year'];
     $event = $_GET['event'];
+    $round = $_GET['round'];
     $firstName = $_GET['firstName'];
     $lastName = $_GET['lastName'];
 
@@ -28,6 +29,13 @@
         $lName_sql = "lastName = '$lastName'";
         array_push($sql_array, $lName_sql);
     }
+
+    if(!empty($round)) {
+        $round_q = "INNER JOIN $round on rushee.uvaid = $round.uvaid";
+    } else {
+         $round_q = '';
+    }
+
     // only include WHERE clause if theres something to be searched for
     if(!empty($sql_array)) {
         $where_q = 'WHERE ' . implode(" AND ", $sql_array) . ';';
@@ -36,9 +44,9 @@
     }
 
     if(!empty($event)) {
-        $sql = "SELECT * FROM rushee INNER JOIN $event on rushee.uvaid = $event.uvaid $where_q";
+        $sql = "SELECT * FROM rushee $round_q INNER JOIN $event on rushee.uvaid = $event.uvaid $where_q";
     } else {
-        $sql = "SELECT * FROM rushee $where_q";
+        $sql = "SELECT * FROM rushee $round_q $where_q";
     }
 
     $result = mysqli_query($conn, $sql);
