@@ -30,6 +30,12 @@
                     First Name:
                     <label id="firstName">No first name provided</label>
                 </div>
+                <div class="col-md-6">
+                <div class="text-right">
+                  <button class="btn close">Delete <span class="glyphicon glyphicon-remove" style="vertical-align:middle"></span></button>
+                  <div id="dialog-box" title="Confirmation:">This will permanently delete the rushee's record, are you sure?</div>
+                </div>
+              </div>
             </div>
             <div class="row padding-top-10">
                 <div class="col-md-6">
@@ -187,8 +193,51 @@
         document.getElementById('rusheeThirdRound').innerHTML = '<?php echo $round3; ?>';
     </script>
 
-    <!-- add / remove button scripts -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- delete button script, using jQuery Dialog UI-->
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
     <script>
+        $(document).ready(function() {
+            $("#dialog-box").dialog({
+                autoOpen: false,
+                modal: true
+            });
+
+            $(".close").click(function(e) {
+                $("#dialog-box").dialog({
+                    buttons : {
+                        "Confirm" : function() {
+                            var user_id = document.getElementById("uvaid").innerHTML;
+                            jQuery.ajax({
+                                type: "POST",
+                                url: "deleteRushee.php",
+                                data: { uvaid: user_id}
+                                }).done(function(msg) {
+
+                            });
+                            // go back 2 pages so the json is reloaded & the table reflects the delete
+                            history.go(-2);
+                        },
+                        "Cancel" : function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+
+                $("#dialog-box").dialog("open");
+            }); 
+        });
+    </script>
+
+    <!-- add / remove button scripts -->
+    <script type="text/javascript">
         function add(roundName) {
             var user_id = document.getElementById('uvaid').innerHTML;
             jQuery.ajax({
@@ -217,10 +266,5 @@
             document.getElementById(roundName).innerHTML = '<?php echo $default_no; ?>';
         }
     </script>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
